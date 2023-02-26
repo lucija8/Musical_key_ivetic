@@ -1,69 +1,76 @@
 package hr.elpros.musical_key_ivetic;
+import android.widget.Button;
+import android.media.SoundPool;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
-import android.widget.Button;
-import android.media.MediaPlayer;
+
 public class MainActivity extends AppCompatActivity {
+    Button key1, key2, key3, key4, key5, key6;
+
+    int sdo, re, mi, fa, sol, la;
+    SoundPool soundPool;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button key1=findViewById(R.id.key1);
-        Button key2=findViewById(R.id.key2);
-        Button key3=findViewById(R.id.key3);
-        Button key4=findViewById(R.id.key4);
-        Button key5=findViewById(R.id.key5);
-        Button key6=findViewById(R.id.key6);
-        MediaPlayer do1=MediaPlayer.create(this, R.raw.soundofdo);
-        MediaPlayer re=MediaPlayer.create(this, R.raw.resound);
-        MediaPlayer mi=MediaPlayer.create(this, R.raw.misound);
-        MediaPlayer fa=MediaPlayer.create(this, R.raw.fasound);
-        MediaPlayer sol=MediaPlayer.create(this, R.raw.solsound);
-        MediaPlayer la=MediaPlayer.create(this, R.raw.lasound);
+        key1=(Button) findViewById(R.id.key1);
+        key2=(Button) findViewById(R.id.key2);
+        key3=(Button) findViewById(R.id.key3);
+        key4=(Button) findViewById(R.id.key4);
+        key5=(Button) findViewById(R.id.key5);
+        key6=(Button) findViewById(R.id.key6);
+        soundPool = new SoundPool.Builder().setMaxStreams(6).build();
+        sdo = soundPool.load(this, R.raw.soundofdo,1);
+        re = soundPool.load(this, R.raw.resound,1);
+        mi = soundPool.load(this, R.raw.misound,1);
+        fa = soundPool.load(this, R.raw.fasound,1);
+        sol = soundPool.load(this, R.raw.solsound,1);
+        la = soundPool.load(this, R.raw.lasound,1);
         key1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                do1.start();
 
+                soundPool.play(sdo, 1,1,0,0,1);
             }
         });
         key2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                re.start();
 
+                soundPool.play(re, 1,1,0,0,1);
             }
         });
         key3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mi.start();
 
-
+                soundPool.play(mi, 1,1,0,0,1);
             }
         });
         key4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fa.start();
 
+                soundPool.play(fa, 1,1,0,0,1);
             }
         });
         key5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sol.start();
 
+                soundPool.play(sol, 1,1,0,0,1);
             }
         });
         key6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                la.start();
 
+                soundPool.play(la, 1,1,0,0,1);
             }
         });
+
+
     }
 }
